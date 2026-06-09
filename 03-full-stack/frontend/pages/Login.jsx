@@ -2,9 +2,12 @@ import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom"
 import { loginRequest } from "../src/api/auth"
 import { useState } from "react"
+import { useAuth } from "../src/context/AuthContext"
 
 
 export const Login = () => {
+
+  const { setUser } = useAuth()
 
   const { register, handleSubmit, formState: { errors } } = useForm()
   const [loginErrors, setLoginErrors] = useState()
@@ -15,7 +18,8 @@ export const Login = () => {
     const { email, password } = data
 
     try {
-      await loginRequest({email, password})
+      const res = await loginRequest({email, password})
+      setUser(res.data)
       navigate("/profile")
     } catch (error) {
       console.log(error)
