@@ -13,7 +13,7 @@ const PORT = process.env.PORT
 
 app.use( express.json() )
 app.use( cors({
-  origin: "http://localhost:5173",
+  origin: "https://44-web-a-proyecto-final.vercel.app/login",
   credentials: true
 }) )
 app.use( cookieParser() )
